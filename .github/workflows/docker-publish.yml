@@ -87,5 +87,5 @@ jobs:
           key: ${{ secrets.DC_KEY }}
           connect_timeout: 10s
           script: |
-            docker stop $NAME; docker run --rm --name $NAME -d -p 13333:80 $IMAGE
+            docker stop $NAME;docker rmi IMAGE; docker run --rm --name $NAME -d -p 13333:80 $IMAGE
 
