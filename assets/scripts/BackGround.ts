@@ -1,4 +1,4 @@
-import { _decorator, Component,PhysicsSystem2D,IPhysics2DContact,Collider2D, Node,math,UITransform, Prefab, instantiate,NodePool, tween, BoxCollider, BoxCollider2D, Contact2DType} from 'cc';
+import { _decorator, Component,PhysicsSystem2D,IPhysics2DContact,Collider2D, Node,math,UITransform, Prefab, instantiate,NodePool, tween, BoxCollider, BoxCollider2D, Contact2DType, game} from 'cc';
 const { _utils } = Prefab;
 const { ccclass, property } = _decorator;
 
@@ -24,14 +24,13 @@ export class BackGround extends Component {
     private init_ground: math.Vec3;
     private init: math.Vec3;
     private speed: number = 100;
-    private jump: boolean = false;
-    private speed_bird: number = 70;
     private speed_ground: number = 60;
 
     private mindis: number = 150;
     private maxdis: number = 200;
     private minY: number = -720;
     private maxY: number = -150;
+    private gameOver: boolean = false;
     onLoad() {
         console.log(this.bg1.position);
         this.init = this.bg1.getPosition();
@@ -53,10 +52,6 @@ export class BackGround extends Component {
 
         
     }
-    onBeginContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        // 只在两个碰撞体开始接触时被调用一次
-        console.log('onBeginContact');
-    }
     pipeschange(dt: number) {
         for (let idx in this.pipes) {
             this.pipes[idx].translate(new math.Vec3(-dt * this.speed_ground));
@@ -64,13 +59,6 @@ export class BackGround extends Component {
     }
     start() {
         console.log(this.bg1, this.bg2);
-        let bc: BoxCollider2D[]= this.getComponentsInChildren(BoxCollider2D);
-        for (let idx in bc) {
-            bc[idx].on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
-        }
-        // if (PhysicsSystem2D.instance) {
-        //     PhysicsSystem2D.instance.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
-        // }
     }
 
     setPipePositon(y:number, gap: number, pipe: Node) {
@@ -112,8 +100,10 @@ export class BackGround extends Component {
     }
     update(deltaTime: number) {
         // this.pipeschange(deltaTime)
-        this.groundScroll(deltaTime);
-        this.backgroundScroll(deltaTime);
+        if (!this.gameOver) {
+            this.groundScroll(deltaTime);
+            this.backgroundScroll(deltaTime);
+        }
         
     }
 }
