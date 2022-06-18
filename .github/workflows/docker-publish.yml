@@ -76,4 +76,16 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: using ssh deploy
+        uses: cross-the-world/ssh-pipeline@master
+        env:
+          IMAGE: ${{steps.meta.outputs.tags}}
+          NAME: flapbird
+        with:
+          host: ${{ secrets.DC_HOST }}
+          user: ${{ secrets.DC_USER }}
+          key: ${{ secrets.DC_KEY }}
+          connect_timeout: 10s
+          script: |
+            docker stop $NAME; docker run --rm --name $NAME -d -p 13333:80 $IMAGE
 
