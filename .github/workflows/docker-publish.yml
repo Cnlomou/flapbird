@@ -76,10 +76,17 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Sanitize repo slug
+        uses: actions/github-script@v6
+        id: repo_slug
+        with:
+          result-encoding: string
+          script: return '${{ steps.meta.outputs.tags }}'.toLowerCase()
+          
       - name: using ssh deploy
         uses: cross-the-world/ssh-pipeline@master
         env:
-          IMAGE: ${{steps.meta.outputs.tags}}
+          IMAGE: ${{ steps.repo_slug.outputs.result }}
           NAME: flapbird
         with:
           host: ${{ secrets.DC_HOST }}
