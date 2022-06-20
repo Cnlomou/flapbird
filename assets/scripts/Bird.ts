@@ -1,6 +1,5 @@
-import { _decorator,PhysicsSystem2D, Component, Node, math,EPhysics2DDrawFlags,IPhysics2DContact, Collider2D, BoxCollider2D,Contact2DType,Quat, Vec2, Label } from 'cc';
+import { _decorator,PhysicsSystem2D, Component, Node, math,EPhysics2DDrawFlags,IPhysics2DContact, Collider2D, BoxCollider2D,Contact2DType,Quat, Vec2, Label, Director, game } from 'cc';
 const { ccclass, property } = _decorator;
-
 @ccclass('Bird')
 export class Bird extends Component {
 
@@ -9,7 +8,6 @@ export class Bird extends Component {
     @property({type: Label})
     private label: Label = null;
     private score: number = 0;
-    private gameOver: boolean = false;
     onLoad(){
         this.node.parent.on(Node.EventType.TOUCH_START, this.touchCallBack, this);
        
@@ -30,6 +28,9 @@ export class Bird extends Component {
             this.score += 5;
             this.label.string = 'score:' + this.score;
             this.label.updateRenderData(true);
+        }else {
+            Director.instance.pause();
+            Director.instance.loadScene('GameOver');
         }
     }
     start() {
@@ -40,21 +41,19 @@ export class Bird extends Component {
         this.speed = -120;
     }
     update(deltaTime: number) {
-        if (!this.gameOver) {
-            this.speed += this.accel * deltaTime;
-            // console.log(this.speed* deltaTime);
-            let dist = this.speed * deltaTime;
-            if (this.node.angle <= 30 && this.node.angle >= -30){
-                this.node.angle += -dist / Math.sqrt(dist * dist);
-            }else if( this.node.angle > 30)
-                this.node.angle = 30;
-            else if( this.node.angle < -30)
-                this.node.angle = -30;
-            // this.node.translate(new math.Vec3(0,-dist, 0));
-            let pos: math.Vec3 = this.node.getWorldPosition()
-            pos.y += -dist;
-            this.node.setWorldPosition(pos);
-        }
+        this.speed += this.accel * deltaTime;
+        // console.log(this.speed* deltaTime);
+        let dist = this.speed * deltaTime;
+        if (this.node.angle <= 30 && this.node.angle >= -30){
+            this.node.angle += -dist / Math.sqrt(dist * dist);
+        }else if( this.node.angle > 30)
+            this.node.angle = 30;
+        else if( this.node.angle < -30)
+            this.node.angle = -30;
+        // this.node.translate(new math.Vec3(0,-dist, 0));
+        let pos: math.Vec3 = this.node.getWorldPosition()
+        pos.y += -dist;
+        this.node.setWorldPosition(pos);
     }
 }
 

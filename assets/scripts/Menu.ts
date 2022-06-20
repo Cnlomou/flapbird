@@ -15,10 +15,9 @@ export class Menu extends Component {
 
     clickcallback(){
         console.log('click on');
-        Director.instance.loadScene('Game');
+        Director.instance.loadScene('notice');
     }
     update(deltaTime: number) {
         
     }
 }
-
