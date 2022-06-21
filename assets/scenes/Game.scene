@@ -21,11 +21,11 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 36
+      "__id__": 37
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 37
+      "__id__": 38
     },
     "_id": "b24c8857-b0d5-4a73-94e6-ace72cd6370d"
   },
@@ -59,14 +59,11 @@
         "__id__": 24
       },
       {
-        "__id__": 29
+        "__id__": 30
       }
     ],
     "_active": true,
     "_components": [
-      {
-        "__id__": 32
-      },
       {
         "__id__": 33
       },
@@ -75,6 +72,9 @@
       },
       {
         "__id__": 35
+      },
+      {
+        "__id__": 36
       }
     ],
     "_prefab": null,
@@ -861,6 +861,9 @@
       },
       {
         "__id__": 28
+      },
+      {
+        "__id__": 29
       }
     ],
     "_prefab": null,
@@ -991,6 +994,28 @@
     "_id": "d7Iq9wN8BF/phJl93P8M/8"
   },
   {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 24
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "playOnLoad": true,
+    "_clips": [
+      {
+        "__uuid__": "a4eb653a-cbb4-4c49-9479-d771de8875ab",
+        "__expectedType__": "cc.AnimationClip"
+      }
+    ],
+    "_defaultClip": {
+      "__uuid__": "a4eb653a-cbb4-4c49-9479-d771de8875ab",
+      "__expectedType__": "cc.AnimationClip"
+    },
+    "_id": "18bKpCjuVGG5b7uJDq8pQq"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "score",
     "_objFlags": 0,
@@ -1001,10 +1026,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 30
+        "__id__": 31
       },
       {
-        "__id__": 31
+        "__id__": 32
       }
     ],
     "_prefab": null,
@@ -1041,7 +1066,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 29
+      "__id__": 30
     },
     "_enabled": true,
     "__prefab": null,
@@ -1062,7 +1087,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 29
+      "__id__": 30
     },
     "_enabled": true,
     "__prefab": null,
@@ -1170,19 +1195,19 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 38
-    },
-    "shadows": {
       "__id__": 39
     },
-    "_skybox": {
+    "shadows": {
       "__id__": 40
     },
-    "fog": {
+    "_skybox": {
       "__id__": 41
     },
-    "octree": {
+    "fog": {
       "__id__": 42
+    },
+    "octree": {
+      "__id__": 43
     }
   },
   {
