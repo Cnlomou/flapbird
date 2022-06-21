@@ -26,8 +26,8 @@ export class BackGround extends Component {
     private speed: number = 100;
     private speed_ground: number = 60;
 
-    private mindis: number = 150;
-    private maxdis: number = 200;
+    private mindis: number = 200;
+    private maxdis: number = 250;
     private minY: number = -720;
     private maxY: number = -150;
     private gameOver: boolean = false;
